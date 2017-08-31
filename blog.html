@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center;"><u>All Blog Posts!</u></h1>
+
+<ol>
+        {% for blog in all_blogs %}
+    <li>
+        <h2><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h2>
+        <p>{{blog.body}}</p>
+        {% for name in user %}
+            {% if name.id == blog.owner_id %}
+        <p><em>written by </em><a href="/blog?user={{name.username}}">{{name.username}}</a></p>
+        {% endif %}
+        {% endfor %}
+        <h5>Date Created: {{blog.pub_date}}</h5>
+    </li>
+    {% endfor %}
+</ol>
+
+
+{% endblock %}
